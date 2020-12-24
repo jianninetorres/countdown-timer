@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 
 interface InputProps {
-  onHandleEventName: any;
+  onHandleEventName: Function;
   eventName: string;
   type: string | undefined;
   placeholder: string;

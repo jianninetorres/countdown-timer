@@ -3,7 +3,7 @@ import React from "react";
 interface ButtonProps {
   type: "button" | "submit" | "reset" | undefined;
   text: string;
-  onClick: any;
+  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
