@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import EventNameInput from "./components/EventNameInput";
+import Button from "./components/Button";
 
-function App() {
+const App: React.FC = (): JSX.Element => {
+  const [eventName, setEventName] = useState<string>("");
+
+  const onHandleEventName = (getEventName: string): void => {
+    console.log(`Setting event name, ${getEventName}`);
+    setEventName(getEventName);
+  };
+
+  const onClickButton = (event: MouseEvent) => {
+    const existingEventName = window.localStorage.getItem("eventName");
+    return existingEventName
+      ? console.log(existingEventName)
+      : window.localStorage.setItem("eventName", eventName);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <h1>HELLO! WHAT SHOULD WE COUNT DOWN TO?</h1>
+        <EventNameInput
+          onHandleEventName={onHandleEventName}
+          eventName={eventName}
+        />
+        <Button type="button" text="START" onClick={onClickButton} />
+      </main>
     </div>
   );
-}
+};
 
 export default App;
