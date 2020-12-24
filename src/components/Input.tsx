@@ -3,11 +3,17 @@ import React, { ChangeEvent } from "react";
 interface InputProps {
   onHandleEventName: any;
   eventName: string;
+  type: string | undefined;
+  placeholder: string;
+  name: string;
 }
 
-const EventNameInput: React.FC<InputProps> = ({
+const Input: React.FC<InputProps> = ({
   onHandleEventName,
   eventName,
+  type,
+  placeholder,
+  name,
 }): JSX.Element => {
   const handleOnChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
     onHandleEventName(event.target.value);
@@ -15,11 +21,11 @@ const EventNameInput: React.FC<InputProps> = ({
 
   return (
     <>
-      <label htmlFor="countdown-title"></label>
+      <label htmlFor={name}></label>
       <input
-        type="text"
-        placeholder="Name your countdown"
-        name="countdown-title"
+        type={type}
+        placeholder={placeholder}
+        name={name}
         value={eventName}
         onChange={handleOnChangeInput}
       />
@@ -27,4 +33,4 @@ const EventNameInput: React.FC<InputProps> = ({
   );
 };
 
-export default EventNameInput;
+export default Input;

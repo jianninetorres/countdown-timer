@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EventNameInput from "./components/EventNameInput";
+import Input from "./components/Input";
 import Button from "./components/Button";
 
 const App: React.FC = (): JSX.Element => {
@@ -21,9 +21,12 @@ const App: React.FC = (): JSX.Element => {
     <div className="App">
       <main>
         <h1>HELLO! WHAT SHOULD WE COUNT DOWN TO?</h1>
-        <EventNameInput
+        <Input
           onHandleEventName={onHandleEventName}
           eventName={eventName}
+          type="text"
+          placeholder="Name your countdown"
+          name="countdown-title"
         />
         <Button type="button" text="START" onClick={onClickButton} />
       </main>
