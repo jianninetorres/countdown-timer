@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import Input from "./components/Input";
 import Button from "./components/Button";
+import NewPage from "./components/NewPage";
 
 const App: React.FC = (): JSX.Element => {
   const [eventName, setEventName] = useState<string>("");
@@ -20,9 +22,9 @@ const App: React.FC = (): JSX.Element => {
 
     if (hasSpaces.test(eventName)) {
       const route = eventName.split(" ").join("-");
-      setRouteRedirect(route);
+      setRouteRedirect(`/${route}`);
     } else {
-      setRouteRedirect(eventName);
+      setRouteRedirect(`/${eventName}`);
     }
   };
 
@@ -87,47 +89,52 @@ const App: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="App">
-      <main>
-        <h1>HELLO! WHAT SHOULD WE COUNT DOWN TO?</h1>
-        <Input
-          onHandleEventName={onHandleEventName}
-          eventName={eventName}
-          type="text"
-          placeholder="Name your countdown"
-          name="countdown-title"
-        />
-        {eventNameError && <p>{eventNameError}</p>}
-        <div>
-          <Input
-            onHandleEventName={onHandleDayInput}
-            dateNumber={dayInput}
-            type="text"
-            placeholder="DD"
-            name="countdown-to-day"
-            maxLength={2}
-          />
-          <Input
-            onHandleEventName={onHandleMonthInput}
-            dateNumber={monthInput}
-            type="text"
-            placeholder="MM"
-            name="countdown-to-month"
-            maxLength={2}
-          />
-          <Input
-            onHandleEventName={onHandleYearInput}
-            dateNumber={yearInput}
-            type="text"
-            placeholder="YYYY"
-            name="countdown-to-year"
-            maxLength={4}
-          />
-          {dateError && <p>{dateError}</p>}
+    <Switch>
+      <Route exact path="/">
+        <div className="App">
+          <main>
+            <h1>HELLO! WHAT SHOULD WE COUNT DOWN TO?</h1>
+            <Input
+              onHandleEventName={onHandleEventName}
+              eventName={eventName}
+              type="text"
+              placeholder="Name your countdown"
+              name="countdown-title"
+            />
+            {eventNameError && <p>{eventNameError}</p>}
+            <div>
+              <Input
+                onHandleEventName={onHandleDayInput}
+                dateNumber={dayInput}
+                type="text"
+                placeholder="DD"
+                name="countdown-to-day"
+                maxLength={2}
+              />
+              <Input
+                onHandleEventName={onHandleMonthInput}
+                dateNumber={monthInput}
+                type="text"
+                placeholder="MM"
+                name="countdown-to-month"
+                maxLength={2}
+              />
+              <Input
+                onHandleEventName={onHandleYearInput}
+                dateNumber={yearInput}
+                type="text"
+                placeholder="YYYY"
+                name="countdown-to-year"
+                maxLength={4}
+              />
+              {dateError && <p>{dateError}</p>}
+            </div>
+            <Button type="submit" text="START" onClick={onClickButton} />
+          </main>
         </div>
-        <Button type="submit" text="START" onClick={onClickButton} />
-      </main>
-    </div>
+      </Route>
+      <Route exact path={routeRedirect} component={NewPage} />
+    </Switch>
   );
 };
 
