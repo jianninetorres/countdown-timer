@@ -4,6 +4,7 @@ import Button from "./components/Button";
 
 const App: React.FC = (): JSX.Element => {
   const [eventName, setEventName] = useState<string>("");
+  const [routeRedirect, setRouteRedirect] = useState<string>("");
   const [dayInput, setDayInput] = useState<number | null>(null);
   const [monthInput, setMonthInput] = useState<number | null>(null);
   const [yearInput, setYearInput] = useState<number | null>(null);
@@ -12,6 +13,17 @@ const App: React.FC = (): JSX.Element => {
 
   const onHandleEventName = (getEventName: string): void => {
     setEventName(getEventName);
+  };
+
+  const createEventRoute = (eventName: string) => {
+    const hasSpaces = /\s/g;
+
+    if (hasSpaces.test(eventName)) {
+      const route = eventName.split(" ").join("-");
+      setRouteRedirect(route);
+    } else {
+      setRouteRedirect(eventName);
+    }
   };
 
   const onHandleDayInput = (getDayInput: string): void => {
@@ -61,8 +73,9 @@ const App: React.FC = (): JSX.Element => {
     if (eventName !== "" && fullDate) {
       window.localStorage.setItem("eventName", eventName);
       window.localStorage.setItem("dateInput", fullDate);
-    } else if (eventName === "") {
-      console.log(fullDate);
+
+      const eventRoute = eventName.toLowerCase();
+      createEventRoute(eventRoute);
     }
 
     // if (fullDate.match(fullDateValidator)) {
