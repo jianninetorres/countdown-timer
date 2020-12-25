@@ -2,18 +2,22 @@ import React, { ChangeEvent } from "react";
 
 interface InputProps {
   onHandleEventName: Function;
-  eventName: string;
+  eventName?: string | undefined;
+  dateNumber?: number | null;
   type: string | undefined;
   placeholder: string;
   name: string;
+  maxLength?: number;
 }
 
 const Input: React.FC<InputProps> = ({
   onHandleEventName,
   eventName,
+  dateNumber,
   type,
   placeholder,
   name,
+  maxLength,
 }): JSX.Element => {
   const handleOnChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
     onHandleEventName(event.target.value);
@@ -28,6 +32,8 @@ const Input: React.FC<InputProps> = ({
         name={name}
         value={eventName}
         onChange={handleOnChangeInput}
+        maxLength={maxLength}
+        required
       />
     </>
   );
