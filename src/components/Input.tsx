@@ -13,7 +13,6 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({
   onHandleEventName,
   eventName,
-  dateNumber,
   type,
   placeholder,
   name,
