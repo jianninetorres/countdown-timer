@@ -14,7 +14,6 @@ const App: React.FC = (): JSX.Element => {
     setHasEvent(true);
     setInterval(() => {
       const now = Date.now();
-      const futureDate = new Date(fullDate);
       const futureDateParsed = Date.parse(fullDate);
 
       const difference = Math.abs(futureDateParsed - now);
@@ -25,7 +24,6 @@ const App: React.FC = (): JSX.Element => {
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-      console.log(futureDate, days, hours, minutes, seconds);
       setEventName(eventName);
       setCountdownDays(days);
       setCountdownHours(hours);
