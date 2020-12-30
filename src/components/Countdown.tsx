@@ -30,15 +30,15 @@ const CounterContainerStyles = styled.div`
 const CardContainerStyles = styled.div`
   position: relative;
   overflow: hidden;
-  &::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 42%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 8px 8px 0 0;
-    background-color: #2c2e44;
-  }
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   width: 100%;
+  //   height: 42%;
+  //   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  //   border-radius: 8px 8px 0 0;
+  //   background-color: #2c2e44;
+  // }
 
   &::after {
     content: "";
@@ -47,6 +47,16 @@ const CardContainerStyles = styled.div`
     height: 0;
     top: 42%;
     border-top: 2px solid rgba(0, 0, 0, 0.25);
+  }
+
+  .flipcard {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 8px 8px 0 0;
+    background-color: #2c2e44;
   }
 `;
 
@@ -60,6 +70,7 @@ const CardStyles = styled.div`
   border-radius: 8px;
   background-color: #343650;
   box-shadow: 1px 9px #191a23;
+  position: relative;
 
   @media screen and (min-width: 768px) {
     height: 150px;
@@ -73,7 +84,7 @@ const CardStyles = styled.div`
     height: 20px;
     background-color: #191a23;
     position: absolute;
-    top: 37%;
+    top: 43%;
     border-radius: 20px;
     z-index: 10;
   }
@@ -129,6 +140,7 @@ const Countdown: React.FC<CountdownProps> = ({
         {typeof days === "number" && days >= 0 ? (
           <CardContainerStyles>
             <CardStyles>
+              <div className="flipcard"></div>
               <h1>{days}</h1>
             </CardStyles>{" "}
             <LabelStyles>days</LabelStyles>
@@ -139,6 +151,7 @@ const Countdown: React.FC<CountdownProps> = ({
         {typeof hours === "number" && hours >= 0 ? (
           <CardContainerStyles>
             <CardStyles>
+              <div className="flipcard"></div>
               <h1>{hours}</h1>
             </CardStyles>{" "}
             <LabelStyles>hours</LabelStyles>
@@ -149,6 +162,7 @@ const Countdown: React.FC<CountdownProps> = ({
         {typeof minutes === "number" && minutes >= 0 ? (
           <CardContainerStyles>
             <CardStyles>
+              <div className="flipcard"></div>
               <h1>{minutes}</h1>
             </CardStyles>{" "}
             <LabelStyles>minutes</LabelStyles>
@@ -159,6 +173,7 @@ const Countdown: React.FC<CountdownProps> = ({
         {typeof seconds === "number" && seconds >= 0 ? (
           <CardContainerStyles>
             <CardStyles>
+              <div className="flipcard"></div>
               <h1>{seconds}</h1>
             </CardStyles>{" "}
             <LabelStyles>seconds</LabelStyles>
