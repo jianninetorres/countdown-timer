@@ -73,7 +73,7 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
 
   const onHandleDayInput = (getDayInput: string): void => {
     const day = parseInt(getDayInput);
-    if (typeof day === "number" && day <= 31) {
+    if (typeof day === "number" && day < 32) {
       console.log(`is number, ${day}`);
       setDayInput(day);
     }
@@ -81,7 +81,7 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
 
   const onHandleMonthInput = (getMonthInput: string): void => {
     const month = parseInt(getMonthInput);
-    if (typeof month === "number" && month <= 12) {
+    if (typeof month === "number" && month < 13) {
       console.log(`is number, ${month}`);
       setMonthInput(month);
     }
@@ -90,7 +90,7 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   const onHandleYearInput = (getYearInput: string): void => {
     const year = parseInt(getYearInput);
     const thisYear = new Date().getFullYear();
-    if (typeof year === "number" && year >= thisYear) {
+    if (typeof year === "number" && (year > thisYear || year === thisYear)) {
       console.log(`is number, ${year}`);
       console.log(thisYear);
       setYearInput(year);
@@ -100,19 +100,25 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   const onClickButton = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    const fullDate = `${dayInput}-${monthInput}-${yearInput}`;
-    // const fullDateValidator = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/gm;
+    const fullDate = `${monthInput}-${dayInput}-${yearInput}`;
+    const now = Date.now();
+    const futureDateParsed = Date.parse(fullDate);
 
     if (eventName === "") {
       setEventNameError("Please enter a title for your countdown.");
     }
 
-    if (dayInput === null || monthInput === null || yearInput === null) {
+    if (
+      dayInput === null ||
+      monthInput === null ||
+      yearInput === null ||
+      futureDateParsed - now <= 0
+    ) {
       setDateError(
         "Please enter a future date with the correct format DD-MM-YYYY"
       );
-    } else if (eventName !== "" && fullDate) {
-      startCountdown(eventName, fullDate);
+    } else if (eventName !== "" && fullDate && futureDateParsed - now > 0) {
+      startCountdown(eventName, fullDate, now, futureDateParsed);
     }
   };
 
@@ -131,19 +137,19 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
       />
       <InputContainerStyles>
         <Input
-          onHandleEventName={onHandleDayInput}
-          dateNumber={dayInput}
-          type="text"
-          placeholder="DD"
-          name="countdown-to-day"
-          maxLength={2}
-        />
-        <Input
           onHandleEventName={onHandleMonthInput}
           dateNumber={monthInput}
           type="text"
           placeholder="MM"
           name="countdown-to-month"
+          maxLength={2}
+        />
+        <Input
+          onHandleEventName={onHandleDayInput}
+          dateNumber={dayInput}
+          type="text"
+          placeholder="DD"
+          name="countdown-to-day"
           maxLength={2}
         />
         <Input
