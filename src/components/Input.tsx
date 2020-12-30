@@ -15,7 +15,9 @@ const LabelStyles = styled.label`
 
 const InputStyles = styled.input`
   border: none;
-  border-radius: 6px;
+  background-color: #1e1e2a;
+  border-bottom: 1px dotted hotpink;
+  color: white;
 `;
 
 interface InputProps {

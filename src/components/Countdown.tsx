@@ -6,9 +6,10 @@ import styled from "styled-components";
 const CounterStyles = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 100px 16px;
+  height: 50%;
 `;
 
 const CounterContainerStyles = styled.div`

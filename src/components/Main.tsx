@@ -10,6 +10,7 @@ const MainStyles = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 64px 16px;
+  height: 50%;
 
   @media screen and (min-width: 1024px) {
     padding-top: 128px;
