@@ -1,5 +1,6 @@
 import React from "react";
 import HeaderH1 from "./HeaderH1";
+import Button from "./Button";
 import styled from "styled-components";
 
 const CounterStyles = styled.div`
@@ -114,6 +115,12 @@ const Countdown: React.FC<CountdownProps> = ({
   minutes,
   seconds,
 }): JSX.Element => {
+  const onClickButton = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    window.location.reload();
+  };
+
   return (
     <CounterStyles>
       {title ? <HeaderH1 fontSize="2rem">Countdown to {title}</HeaderH1> : ""}
@@ -159,6 +166,11 @@ const Countdown: React.FC<CountdownProps> = ({
           ""
         )}
       </CounterContainerStyles>
+      {title ? (
+        <Button text="RESET" onClick={onClickButton} bgColor="hotpink" />
+      ) : (
+        ""
+      )}
     </CounterStyles>
   );
 };
