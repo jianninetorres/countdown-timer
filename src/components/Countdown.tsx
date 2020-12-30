@@ -1,4 +1,5 @@
 import React from "react";
+import HeaderH1 from "./HeaderH1";
 import styled from "styled-components";
 
 const CounterStyles = styled.div`
@@ -34,7 +35,7 @@ const Countdown: React.FC<CountdownProps> = ({
 }): JSX.Element => {
   return (
     <CounterStyles>
-      {title ? <h1>{title}</h1> : ""}
+      {title ? <HeaderH1 fontSize="2rem">Countdown to {title}</HeaderH1> : ""}
       <CounterContainerStyles>
         {typeof days === "number" && days >= 0 ? (
           <div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
+import HeaderH1 from "./HeaderH1";
 import styled from "styled-components";
 
 const MainStyles = styled.div`
@@ -13,12 +14,6 @@ const MainStyles = styled.div`
   @media screen and (min-width: 1024px) {
     padding-top: 128px;
     padding-bottom: 128px;
-  }
-
-  h1 {
-    font-size: 2rem;
-    font-variant-caps: all-petite-caps;
-    margin-bottom: 64px;
   }
 
   input[name="countdown-title"] {
@@ -123,7 +118,7 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
 
   return (
     <MainStyles>
-      <h1>Set your countdown</h1>
+      <HeaderH1 fontSize="2rem">Set your countdown</HeaderH1>
       {eventNameError && (
         <CountDownNameErrorStyles>{eventNameError}</CountDownNameErrorStyles>
       )}

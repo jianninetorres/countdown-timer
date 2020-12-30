@@ -13,12 +13,6 @@ const AppStyles = styled.div`
   background-size: 100%;
   height: 100vh;
   font-family: "Inter", sans-serif;
-
-  h1 {
-    color: white;
-    font-weight: 500;
-    letter-spacing: 1px;
-  }
 `;
 
 const App: React.FC = (): JSX.Element => {
