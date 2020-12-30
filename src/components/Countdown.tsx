@@ -32,7 +32,7 @@ const CardContainerStyles = styled.div`
     content: "";
     position: absolute;
     width: 100%;
-    height: 46%;
+    height: 42%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 8px 8px 0 0;
     background-color: #2c2e44;
@@ -43,7 +43,7 @@ const CardContainerStyles = styled.div`
     position: absolute;
     width: 100%;
     height: 0;
-    top: 46%;
+    top: 42%;
     border-top: 2px solid rgba(0, 0, 0, 0.25);
   }
 `;
@@ -71,7 +71,7 @@ const CardStyles = styled.div`
     height: 20px;
     background-color: #191a23;
     position: absolute;
-    top: 40%;
+    top: 37%;
     border-radius: 20px;
     z-index: 10;
   }
