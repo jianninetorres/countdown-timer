@@ -93,7 +93,7 @@ const CardStyles = styled.div`
 const LabelStyles = styled.div`
   color: #8385a9;
   font-variant-caps: small-caps;
-  margin-top: 8px;
+  margin-top: 12px;
   text-align: center;
   font-weight: 600;
   letter-spacing: 1.2px;
