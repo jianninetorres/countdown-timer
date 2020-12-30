@@ -10,7 +10,7 @@ const AppStyles = styled.div`
   background: url(${hillsBg}) no-repeat center bottom,
     url(${starsBg}) no-repeat center top,
     linear-gradient(#1e1e2a, #1f1d2a, #211d2b, #231d2b);
-  background-size: 100%;
+  background-size: 100%, cover;
   height: 100vh;
   font-family: "Inter", sans-serif;
 `;

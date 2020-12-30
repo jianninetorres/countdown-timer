@@ -7,15 +7,74 @@ const CounterStyles = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 100px 0;
+  padding: 100px 16px;
 `;
 
 const CounterContainerStyles = styled.div`
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(50px, 80px));
+  justify-content: center;
+  grid-gap: 10px;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(4, 150px);
+    grid-gap: 32px;
+  }
+`;
+
+const CardContainerStyles = styled.div`
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 46%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 8px 8px 0 0;
+    background-color: #2c2e44;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0;
+    top: 46%;
+    border-top: 2px solid rgba(0, 0, 0, 0.25);
+  }
+`;
+
+const CardStyles = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 3rem;
+  font-weight: 700;
+  border-radius: 8px;
+  background-color: #343650;
+
+  @media screen and (min-width: 768px) {
+    height: 150px;
+    font-size: 4rem;
+  }
+
+  h1 {
+    position: absolute;
+    color: #fb5e84;
+  }
+`;
+
+const LabelStyles = styled.div`
+  color: #8385a9;
+  font-variant-caps: small-caps;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1.2px;
 `;
 
 interface CountdownProps {
@@ -38,30 +97,42 @@ const Countdown: React.FC<CountdownProps> = ({
       {title ? <HeaderH1 fontSize="2rem">Countdown to {title}</HeaderH1> : ""}
       <CounterContainerStyles>
         {typeof days === "number" && days >= 0 ? (
-          <div>
-            <h1>{days}</h1> <div>days</div>
-          </div>
+          <CardContainerStyles>
+            <CardStyles>
+              <h1>{days}</h1>
+            </CardStyles>{" "}
+            <LabelStyles>days</LabelStyles>
+          </CardContainerStyles>
         ) : (
           ""
         )}
         {typeof hours === "number" && hours >= 0 ? (
-          <div>
-            <h1>{hours}</h1> <div>hours</div>
-          </div>
+          <CardContainerStyles>
+            <CardStyles>
+              <h1>{hours}</h1>
+            </CardStyles>{" "}
+            <LabelStyles>hours</LabelStyles>
+          </CardContainerStyles>
         ) : (
           ""
         )}
         {typeof minutes === "number" && minutes >= 0 ? (
-          <div>
-            <h1>{minutes}</h1> <div>minutes</div>
-          </div>
+          <CardContainerStyles>
+            <CardStyles>
+              <h1>{minutes}</h1>
+            </CardStyles>{" "}
+            <LabelStyles>minutes</LabelStyles>
+          </CardContainerStyles>
         ) : (
           ""
         )}
         {typeof seconds === "number" && seconds >= 0 ? (
-          <div>
-            <h1>{seconds}</h1> <div>seconds</div>
-          </div>
+          <CardContainerStyles>
+            <CardStyles>
+              <h1>{seconds}</h1>
+            </CardStyles>{" "}
+            <LabelStyles>seconds</LabelStyles>
+          </CardContainerStyles>
         ) : (
           ""
         )}

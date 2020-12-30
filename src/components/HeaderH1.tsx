@@ -12,6 +12,7 @@ const H1Styles = styled.h1<HeaderH1Props>`
   font-variant-caps: all-petite-caps;
   margin-bottom: 64px;
   font-size: ${(props) => props.fontSize || "1rem"};
+  text-align: center;
 `;
 
 const HeaderH1: React.FC<HeaderH1Props> = ({
