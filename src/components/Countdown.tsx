@@ -27,6 +27,7 @@ const CounterContainerStyles = styled.div`
 
 const CardContainerStyles = styled.div`
   position: relative;
+  overflow: hidden;
   &::before {
     content: "";
     position: absolute;
@@ -56,10 +57,31 @@ const CardStyles = styled.div`
   font-weight: 700;
   border-radius: 8px;
   background-color: #343650;
+  box-shadow: 1px 9px #191a23;
 
   @media screen and (min-width: 768px) {
     height: 150px;
     font-size: 4rem;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: #191a23;
+    position: absolute;
+    top: 40%;
+    border-radius: 20px;
+    z-index: 10;
+  }
+
+  &::before {
+    left: -10px;
+  }
+
+  &::after {
+    right: -10px;
   }
 
   h1 {
