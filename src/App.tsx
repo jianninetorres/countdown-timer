@@ -12,10 +12,10 @@ const AppStyles = styled.div`
     linear-gradient(#1e1e2a, #1f1d2a, #211d2b, #231d2b);
   background-size: 100%;
   height: 100vh;
+  font-family: "Inter", sans-serif;
 
   h1 {
     color: white;
-    font-family: "Inter", sans-serif;
     font-weight: 500;
     letter-spacing: 1px;
   }

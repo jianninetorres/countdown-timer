@@ -43,6 +43,23 @@ const InputContainerStyles = styled.div`
   grid-gap: 32px;
 `;
 
+const ErrorStyles = styled.p`
+  display: inline-block;
+  position: relative;
+  color: lightgrey;
+`;
+
+const CountDownNameErrorStyles = styled(ErrorStyles)`
+  bottom: 20px;
+`;
+
+const DateErrorStyles = styled(ErrorStyles)`
+  top: 20px;
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+`;
+
 interface MainProps {
   startCountdown: Function;
 }
@@ -96,7 +113,9 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
     }
 
     if (dayInput === null || monthInput === null || yearInput === null) {
-      setDateError("Please enter a date with the correct format DD-MM-YYYY");
+      setDateError(
+        "Please enter a future date with the correct format DD-MM-YYYY"
+      );
     } else if (eventName !== "" && fullDate) {
       startCountdown(eventName, fullDate);
     }
@@ -105,6 +124,9 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   return (
     <MainStyles>
       <h1>Set your countdown</h1>
+      {eventNameError && (
+        <CountDownNameErrorStyles>{eventNameError}</CountDownNameErrorStyles>
+      )}
       <Input
         onHandleEventName={onHandleEventName}
         eventName={eventName}
@@ -112,7 +134,6 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
         placeholder="Name your countdown"
         name="countdown-title"
       />
-      {eventNameError && <p>{eventNameError}</p>}
       <InputContainerStyles>
         <Input
           onHandleEventName={onHandleDayInput}
@@ -138,8 +159,8 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
           name="countdown-to-year"
           maxLength={4}
         />
-        {dateError && <p>{dateError}</p>}
       </InputContainerStyles>
+      {dateError && <DateErrorStyles>{dateError}</DateErrorStyles>}
       <Button text="START" onClick={onClickButton} />
     </MainStyles>
   );
