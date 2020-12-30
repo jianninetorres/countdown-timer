@@ -1,6 +1,25 @@
 import React, { useState } from "react";
 import Main from "./components/Main";
 import Countdown from "./components/Countdown";
+import "./assets/styles/typography.css";
+import styled from "styled-components";
+import starsBg from "./assets/images/bg-stars.svg";
+import hillsBg from "./assets/images/pattern-hills.svg";
+
+const AppStyles = styled.div`
+  background: url(${hillsBg}) no-repeat center bottom,
+    url(${starsBg}) no-repeat center top,
+    linear-gradient(#1e1e2a, #1f1d2a, #211d2b, #231d2b);
+  background-size: 100%;
+  height: 100vh;
+
+  h1 {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+`;
 
 const App: React.FC = (): JSX.Element => {
   const [eventName, setEventName] = useState<string>("");
@@ -33,7 +52,7 @@ const App: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="App">
+    <AppStyles className="App">
       {hasEvent ? (
         <Countdown
           title={eventName}
@@ -45,7 +64,7 @@ const App: React.FC = (): JSX.Element => {
       ) : (
         <Main startCountdown={startCountdown} />
       )}
-    </div>
+    </AppStyles>
   );
 };
 

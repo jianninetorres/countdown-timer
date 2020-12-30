@@ -1,6 +1,47 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
+import styled from "styled-components";
+
+const MainStyles = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 64px 16px;
+
+  @media screen and (min-width: 1024px) {
+    padding-top: 128px;
+    padding-bottom: 128px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-variant-caps: all-petite-caps;
+    margin-bottom: 64px;
+  }
+
+  input[name="countdown-title"] {
+    height: 40px;
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 32px;
+    font-size: 1.5rem;
+  }
+
+  input[name="countdown-to-day"],
+  input[name="countdown-to-month"],
+  input[name="countdown-to-year"] {
+    font-size: 1.5rem;
+  }
+`;
+
+const InputContainerStyles = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(40px, 74px));
+  grid-template-rows: 60px;
+  grid-gap: 32px;
+`;
 
 interface MainProps {
   startCountdown: Function;
@@ -45,7 +86,7 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   };
 
   const onClickButton = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     const fullDate = `${dayInput}-${monthInput}-${yearInput}`;
     // const fullDateValidator = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/gm;
@@ -62,8 +103,8 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   };
 
   return (
-    <main>
-      {/* <h1>HELLO! WHAT SHOULD WE COUNT DOWN TO?</h1> */}
+    <MainStyles>
+      <h1>Set your countdown</h1>
       <Input
         onHandleEventName={onHandleEventName}
         eventName={eventName}
@@ -72,7 +113,7 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
         name="countdown-title"
       />
       {eventNameError && <p>{eventNameError}</p>}
-      <div>
+      <InputContainerStyles>
         <Input
           onHandleEventName={onHandleDayInput}
           dateNumber={dayInput}
@@ -98,9 +139,9 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
           maxLength={4}
         />
         {dateError && <p>{dateError}</p>}
-      </div>
+      </InputContainerStyles>
       <Button text="START" onClick={onClickButton} />
-    </main>
+    </MainStyles>
   );
 };
 

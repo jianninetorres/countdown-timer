@@ -1,4 +1,22 @@
 import React, { ChangeEvent } from "react";
+import styled from "styled-components";
+
+const LabelStyles = styled.label`
+  //hide label visually but keep them available to screen reader and other assistive technology
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+`;
+
+const InputStyles = styled.input`
+  border: none;
+  border-radius: 6px;
+`;
 
 interface InputProps {
   onHandleEventName: Function;
@@ -24,8 +42,8 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <>
-      <label htmlFor={name}></label>
-      <input
+      <LabelStyles htmlFor={name}></LabelStyles>
+      <InputStyles
         type={type}
         placeholder={placeholder}
         name={name}
