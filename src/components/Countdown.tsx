@@ -130,7 +130,7 @@ const Countdown: React.FC<CountdownProps> = ({
           <CardContainerStyles>
             <CardStyles>
               <h1>{days}</h1>
-            </CardStyles>{" "}
+            </CardStyles>
             <LabelStyles>days</LabelStyles>
           </CardContainerStyles>
         ) : (
@@ -140,7 +140,7 @@ const Countdown: React.FC<CountdownProps> = ({
           <CardContainerStyles>
             <CardStyles>
               <h1>{hours}</h1>
-            </CardStyles>{" "}
+            </CardStyles>
             <LabelStyles>hours</LabelStyles>
           </CardContainerStyles>
         ) : (
@@ -150,7 +150,7 @@ const Countdown: React.FC<CountdownProps> = ({
           <CardContainerStyles>
             <CardStyles>
               <h1>{minutes}</h1>
-            </CardStyles>{" "}
+            </CardStyles>
             <LabelStyles>minutes</LabelStyles>
           </CardContainerStyles>
         ) : (
@@ -160,7 +160,7 @@ const Countdown: React.FC<CountdownProps> = ({
           <CardContainerStyles>
             <CardStyles>
               <h1>{seconds}</h1>
-            </CardStyles>{" "}
+            </CardStyles>
             <LabelStyles>seconds</LabelStyles>
           </CardContainerStyles>
         ) : (

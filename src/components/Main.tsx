@@ -75,7 +75,6 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   const onHandleDayInput = (getDayInput: string): void => {
     const day = parseInt(getDayInput);
     if (typeof day === "number" && day < 32) {
-      console.log(`is number, ${day}`);
       setDayInput(day);
     }
   };
@@ -83,7 +82,6 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   const onHandleMonthInput = (getMonthInput: string): void => {
     const month = parseInt(getMonthInput);
     if (typeof month === "number" && month < 13) {
-      console.log(`is number, ${month}`);
       setMonthInput(month);
     }
   };
@@ -92,8 +90,6 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
     const year = parseInt(getYearInput);
     const thisYear = new Date().getFullYear();
     if (typeof year === "number" && (year > thisYear || year === thisYear)) {
-      console.log(`is number, ${year}`);
-      console.log(thisYear);
       setYearInput(year);
     }
   };
