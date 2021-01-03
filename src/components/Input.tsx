@@ -23,7 +23,6 @@ const InputStyles = styled.input`
 interface InputProps {
   onHandleEventName: Function;
   eventName?: string | undefined;
-  dateNumber?: number | null;
   type: string | undefined;
   placeholder: string;
   name: string;

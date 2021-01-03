@@ -135,7 +135,6 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
       <InputContainerStyles>
         <Input
           onHandleEventName={onHandleMonthInput}
-          dateNumber={monthInput}
           type="text"
           placeholder="MM"
           name="countdown-to-month"
@@ -143,7 +142,6 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
         />
         <Input
           onHandleEventName={onHandleDayInput}
-          dateNumber={dayInput}
           type="text"
           placeholder="DD"
           name="countdown-to-day"
@@ -151,7 +149,6 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
         />
         <Input
           onHandleEventName={onHandleYearInput}
-          dateNumber={yearInput}
           type="text"
           placeholder="YYYY"
           name="countdown-to-year"
