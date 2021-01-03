@@ -31,13 +31,19 @@ const CardContainerStyles = styled.div`
   position: relative;
   overflow: hidden;
   &::before {
-    content: "";
+    content: attr(data-value);
     position: absolute;
-    width: 100%;
+    // width: 100%;
     height: 42%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 8px 8px 0 0;
-    background-color: #2c2e44;
+    // background-color: #2c2e44;
+    font-size: 80px;
+    font-weight: 700;
+    color: hotpink;
+    top: 35px;
+    left: 50%;
+    margin-left: -50px;
   }
 
   &::after {
@@ -47,6 +53,33 @@ const CardContainerStyles = styled.div`
     height: 0;
     top: 42%;
     border-top: 2px solid rgba(0, 0, 0, 0.25);
+  }
+
+  .card {
+    &.top {
+      width: 100%;
+      height: 50%;
+      position: absolute;
+      top: 0;
+
+      &::before {
+        content: attr(data-value);
+        position: absolute;
+        font-size: 80px;
+        font-weight: 700;
+        color: hotpink;
+        top: 35px;
+        left: 50%;
+        margin-left: -50px;
+      }
+    }
+
+    &.bottom {
+      width: 100%;
+      height: 50%;
+      position: absolute;
+      bottom: 0;
+    }
   }
 `;
 
@@ -130,7 +163,7 @@ const Countdown: React.FC<CountdownProps> = ({
           <CardContainerStyles>
             <CardStyles>
               <h1>{days}</h1>
-            </CardStyles>{" "}
+            </CardStyles>
             <LabelStyles>days</LabelStyles>
           </CardContainerStyles>
         ) : (
@@ -140,7 +173,7 @@ const Countdown: React.FC<CountdownProps> = ({
           <CardContainerStyles>
             <CardStyles>
               <h1>{hours}</h1>
-            </CardStyles>{" "}
+            </CardStyles>
             <LabelStyles>hours</LabelStyles>
           </CardContainerStyles>
         ) : (
@@ -150,17 +183,18 @@ const Countdown: React.FC<CountdownProps> = ({
           <CardContainerStyles>
             <CardStyles>
               <h1>{minutes}</h1>
-            </CardStyles>{" "}
+            </CardStyles>
             <LabelStyles>minutes</LabelStyles>
           </CardContainerStyles>
         ) : (
           ""
         )}
         {typeof seconds === "number" && seconds >= 0 ? (
-          <CardContainerStyles>
+          <CardContainerStyles data-value={seconds}>
             <CardStyles>
-              <h1>{seconds}</h1>
-            </CardStyles>{" "}
+              <div className="card top" data-value={seconds}></div>
+              <div className="card bottom" data-value={seconds}></div>
+            </CardStyles>
             <LabelStyles>seconds</LabelStyles>
           </CardContainerStyles>
         ) : (
