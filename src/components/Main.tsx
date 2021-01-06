@@ -97,6 +97,7 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   const onClickButton = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    // TODO: use a library like date-fns
     const fullDate = `${yearInput}-${monthInput}-${dayInput}`;
     const now = Date.now();
     const futureDateParsed = Date.parse(`${fullDate}`);
