@@ -21,7 +21,7 @@ const InputStyles = styled.input`
 `;
 
 interface InputProps {
-  onHandleEventName: Function;
+  onChange: Function;
   eventName?: string | undefined;
   type: string | undefined;
   placeholder: string;
@@ -30,7 +30,7 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({
-  onHandleEventName,
+  onChange,
   eventName,
   type,
   placeholder,
@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({
   maxLength,
 }): JSX.Element => {
   const handleOnChangeInput = (event: ChangeEvent<HTMLInputElement>): void => {
-    onHandleEventName(event.target.value);
+    onChange(event.target.value);
   };
 
   return (

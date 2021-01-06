@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import HeaderH1 from "./HeaderH1";
@@ -68,26 +68,26 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   const [eventNameError, setEventNameError] = useState<string | null>(null);
   const [dateError, setDateError] = useState<string | null>(null);
 
-  const onHandleEventName = (getEventName: string): void => {
-    setEventName(getEventName);
+  const onHandleEventName = (event: string): void => {
+    setEventName(event);
   };
 
-  const onHandleDayInput = (getDayInput: string): void => {
-    const day = parseInt(getDayInput);
+  const onHandleDayInput = (event: string): void => {
+    const day = parseInt(event);
     if (typeof day === "number" && day < 32) {
       setDayInput(day);
     }
   };
 
-  const onHandleMonthInput = (getMonthInput: string): void => {
-    const month = parseInt(getMonthInput);
+  const onHandleMonthInput = (event: string): void => {
+    const month = parseInt(event);
     if (typeof month === "number" && month < 13) {
       setMonthInput(month);
     }
   };
 
-  const onHandleYearInput = (getYearInput: string): void => {
-    const year = parseInt(getYearInput);
+  const onHandleYearInput = (event: string): void => {
+    const year = parseInt(event);
     const thisYear = new Date().getFullYear();
     if (typeof year === "number" && (year > thisYear || year === thisYear)) {
       setYearInput(year);
@@ -97,9 +97,10 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
   const onClickButton = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    const fullDate = `${monthInput}-${dayInput}-${yearInput}`;
+    const fullDate = `${yearInput}-${monthInput}-${dayInput}`;
     const now = Date.now();
-    const futureDateParsed = Date.parse(fullDate);
+    const futureDateParsed = Date.parse(`${fullDate}`);
+    const difference = Math.abs(now - futureDateParsed);
 
     if (eventName === "") {
       setEventNameError("Please enter a title for your countdown.");
@@ -109,13 +110,21 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
       dayInput === null ||
       monthInput === null ||
       yearInput === null ||
-      futureDateParsed - now <= 0
+      difference < 0
     ) {
+      console.log(futureDateParsed - now);
+      console.log(difference);
       setDateError(
         "Please enter a future date with the correct format DD-MM-YYYY"
       );
-    } else if (eventName !== "" && fullDate && futureDateParsed - now > 0) {
-      startCountdown(eventName, fullDate, now, futureDateParsed);
+    } else if (
+      eventName !== "" &&
+      dayInput !== null &&
+      monthInput !== null &&
+      yearInput !== null &&
+      difference > 0
+    ) {
+      startCountdown(eventName, fullDate);
     }
   };
 
@@ -126,7 +135,7 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
         <CountDownNameErrorStyles>{eventNameError}</CountDownNameErrorStyles>
       )}
       <Input
-        onHandleEventName={onHandleEventName}
+        onChange={onHandleEventName}
         eventName={eventName}
         type="text"
         placeholder="Name your countdown"
@@ -134,21 +143,21 @@ const Main: React.FC<MainProps> = ({ startCountdown }): JSX.Element => {
       />
       <InputContainerStyles>
         <Input
-          onHandleEventName={onHandleMonthInput}
+          onChange={onHandleMonthInput}
           type="text"
           placeholder="MM"
           name="countdown-to-month"
           maxLength={2}
         />
         <Input
-          onHandleEventName={onHandleDayInput}
+          onChange={onHandleDayInput}
           type="text"
           placeholder="DD"
           name="countdown-to-day"
           maxLength={2}
         />
         <Input
-          onHandleEventName={onHandleYearInput}
+          onChange={onHandleYearInput}
           type="text"
           placeholder="YYYY"
           name="countdown-to-year"

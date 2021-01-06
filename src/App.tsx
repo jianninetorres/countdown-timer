@@ -25,6 +25,7 @@ const App: React.FC = (): JSX.Element => {
 
   const startCountdown = (eventName: string, fullDate: string): void => {
     setHasEvent(true);
+    console.log("start countdown");
     setInterval(() => {
       const now = Date.now();
       const futureDateParsed = Date.parse(fullDate);
